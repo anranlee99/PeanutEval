@@ -1,5 +1,6 @@
 import { useSignal } from "@preact/signals";
 import CodeBox from "../islands/CodeBox.tsx";
+import InputBox from "../islands/Input.tsx";
 export default function Home() {
   const count = useSignal(3);
   return (
@@ -8,6 +9,9 @@ export default function Home() {
         <CodeBox code={`const count = useSignal(${count})`} />
         <CodeBox code={`const count = useSignal(${count})`} />
       </div>
+
+      <InputBox />
+
     </div>
   );
 }

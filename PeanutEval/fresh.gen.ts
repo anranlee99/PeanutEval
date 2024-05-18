@@ -10,6 +10,7 @@ import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $CodeBox from "./islands/CodeBox.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $Input from "./islands/Input.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -24,6 +25,7 @@ const manifest = {
   islands: {
     "./islands/CodeBox.tsx": $CodeBox,
     "./islands/Counter.tsx": $Counter,
+    "./islands/Input.tsx": $Input,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
