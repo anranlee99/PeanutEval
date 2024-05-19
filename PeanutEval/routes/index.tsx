@@ -10,6 +10,8 @@ export default function Home() {
         <CodeBox code={`const count = useSignal(${count})`} />
       </div>
 
+      
+
       <InputBox />
 
     </div>
