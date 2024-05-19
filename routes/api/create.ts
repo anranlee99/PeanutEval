@@ -5,10 +5,10 @@ export const handler: Handlers = {
   async POST(request) {
     // Parse the request body as FormData
     const formData = await request.formData();
-    const model = formData.get("model");
-    
+    const model = formData.get("model") as string;
 
-    //
+    createEndpoint(model);
+
     
     try {
       return new Response(

@@ -9,6 +9,11 @@ export async function sendPrompt(prompt: string, model: string) {
         baseURL: `https://api.runpod.ai/v2/${model}/openai/v1`,
     });
 
+    console.log("Prompt", prompt);
+    console.log("Model", model);
+    console.log("client", client)
+
+
     const completion = await client.chat.completions.create({
         model: model,
         messages: [{
@@ -19,5 +24,8 @@ export async function sendPrompt(prompt: string, model: string) {
         max_tokens: 100,
     });
     console.log(completion)
-    return JSON.parse(completion.choices[0].message.content as string);
+    const response = new Response(JSON.stringify(completion), {
+        status: 200,
+    });
+    return response;
 }
