@@ -28,27 +28,27 @@ export const handler: Handlers = {
     console.log("before responses\n");
 
     let response_left = await sendPrompt(prompt, model_left, id_left);
-    let response_left2 = await sendPrompt(prompts[mod(prompt_number+1,3)][0], model_left, id_left);
-    let response_left3 = await sendPrompt(prompts[mod(prompt_number-1,3)][0], model_left, id_left);
+    // let response_left2 = await sendPrompt(prompts[mod(prompt_number+1,3)][0], model_left, id_left);
+    // let response_left3 = await sendPrompt(prompts[mod(prompt_number-1,3)][0], model_left, id_left);
     console.log("After left\n");
     response_left = response_left.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
-    response_left2 = response_left2.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
-    response_left3 = response_left3.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
+    // response_left2 = response_left2.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
+    // response_left3 = response_left3.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
     console.log("Response Left:",  response_left);
-    console.log("Response Left2:",  response_left2);
-    console.log("Response Left3:",  response_left3);
+    // console.log("Response Left2:",  response_left2);
+    // console.log("Response Left3:",  response_left3);
 
     let response_right = await sendPrompt(prompt, model_right, id_right);
-    let response_right2 = await sendPrompt(prompts[mod(prompt_number+1,3)][0], model_right, id_right);
-    let response_right3 = await sendPrompt(prompts[mod(prompt_number-1,3)][0], model_right, id_right);
+    // let response_right2 = await sendPrompt(prompts[mod(prompt_number+1,3)][0], model_right, id_right);
+    // let response_right3 = await sendPrompt(prompts[mod(prompt_number-1,3)][0], model_right, id_right);
 
     console.log("After right\n")
     response_right = response_right.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
-    response_right2 = response_right2.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
-    response_right3 = response_right3.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
+    // response_right2 = response_right2.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
+    // response_right3 = response_right3.substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
     console.log("Response Right:",  response_right);
-    console.log("Response Right2:",  response_right2);
-    console.log("Response Right3:",  response_right3);
+    // console.log("Response Right2:",  response_right2);
+    // console.log("Response Right3:",  response_right3);
 
     let data_left = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run",
       {
@@ -60,7 +60,7 @@ export const handler: Handlers = {
       body: JSON.stringify({
           "Input" : {
              "num_params" : num_arguments,
-              "code" : [response_left, response_left2, response_left3],
+              "code" : [response_left ],
               "params" : args,
           }
         })
@@ -81,7 +81,7 @@ export const handler: Handlers = {
       body: JSON.stringify({
           "Input" : {
              "num_params" : num_arguments,
-              "code" : [response_right, response_right2, response_right3],
+              "code" : [response_right ],
               "params" : args,
           }
         })
