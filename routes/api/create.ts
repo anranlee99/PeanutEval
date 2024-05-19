@@ -7,7 +7,8 @@ export const handler: Handlers = {
     const formData = await request.formData();
     const model = formData.get("model") as string;
 
-    createEndpoint(model);
+    const response = await createEndpoint(model);
+    console.log("response", response.json());
 
     
     try {

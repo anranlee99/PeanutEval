@@ -3,7 +3,7 @@ export async function createEndpoint(model: string) {
     "operationName": "saveEndpoint",
     "variables": {
       "input": {
-        "gpuIds": "AMPERE_16",
+        "gpuIds": "AMPERE_80",
         "idleTimeout": 5,
         "locations": null,
         "name": model,
@@ -11,14 +11,14 @@ export async function createEndpoint(model: string) {
         "scalerType": "QUEUE_DELAY",
         "scalerValue": 4,
         "workersMax": 3,
-        "workersMin": 0,
+        "workersMin": 1,
         "gpuCount": 1,
         "bindEndpoint": true,
         "allowedCudaVersions": "12.1,12.2,12.3",
         "template": {
           "name": model,
           "imageName": "runpod/worker-vllm:stable-cuda12.1.0",
-          "containerDiskInGb": 30,
+          "containerDiskInGb": 300,
           "dockerArgs": "",
           "env": [
             {
@@ -50,7 +50,5 @@ export async function createEndpoint(model: string) {
     "body": JSON.stringify(reqObj),
     "method": "POST",
   });
-  const data = await response
-  console.log(data);
-  return data;
+  return response;
 }

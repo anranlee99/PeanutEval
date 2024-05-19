@@ -1,7 +1,4 @@
 export default [
-    "BAAI/Aquila-7B",
-    "Snowflake/snowflake-arctic-instruct",
-    "baichuan-inc/Baichuan2-13B-Chat",
     "bigscience/bloomz",
     "THUDM/chatglm3-6b",
     "CohereForAI/c4ai-command-r-v01",
