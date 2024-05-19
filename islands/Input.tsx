@@ -26,10 +26,10 @@ export default function InputBox({ model_left, model_right }: InputBoxProps) {
     }
   };
   return (
-    <div class="flex justify-center w-full max-w-screen-md">
+    <div class="flex justify-end w-full max-w-screen-md">
       <pre class="whitespace-pre-wrap">
-          <div class="flex gap-8 py-6">
-            <Button class="mt-8 text-white py-3 px-6 rounded-lg font-bold shadow-lg transform transition-transform hover:-translate-y-1" onClick={handleSubmit} type="submit">Send Request</Button>
+          <div class="">
+            <Button class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black" onClick={handleSubmit} type="submit">Compare</Button>
           </div>
       </pre>
     </div>
