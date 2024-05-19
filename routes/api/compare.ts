@@ -18,20 +18,25 @@ export const handler: Handlers = {
 
 
     const num_arguments = 10;
-    let args: string[][]= [];
+    let args: string[][]= [[],[],[]];
     for(let i=0;i<num_arguments;i++){
-      args[0][i] = "('" + generateParens() + "')";
-      args[1][i] = "('" + generateStrings() + "')";
-      args[2][i] = "('" + generateMatrix() + "')"
+      args[0].push("('" + generateParens() + "')");
+      args[1].push("('" + generateStrings() + "')");
+      args[2].push("('" + generateMatrix() + "')");
     }
+
+    console.log("before responses\n");
+
 
 
     const response_left = await sendPrompt(prompt, model_left, id_left);
-    const response_left2 = await sendPrompt(prompts[prompt_number+1 % 3][0], model_left, id_left);
-    const response_left3 = await sendPrompt(prompts[prompt_number-1 % 3][0], model_left, id_left);
+    const response_left2 = await sendPrompt(prompts[(prompt_number+1) % 3][0], model_left, id_left);
+    const response_left3 = await sendPrompt(prompts[(prompt_number-1) % 3][0], model_left, id_left);
+    console.log("After left\n");
     const response_right = await sendPrompt(prompt, model_right, id_right);
-    const response_right2 = await sendPrompt(prompts[prompt_number+1 % 3][0], model_right, id_right);
-    const response_right3 = await sendPrompt(prompts[prompt_number-1 % 3][0], model_right, id_right);
+    const response_right2 = await sendPrompt(prompts[(prompt_number+1) % 3][0], model_right, id_right);
+    const response_right3 = await sendPrompt(prompts[(prompt_number-1) % 3][0], model_right, id_right);
+    console.log("After right\n")
 
     let data_left = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run?api_key=" + Deno.env.get("RUNPOD_API_KEY"),
       {
@@ -47,6 +52,8 @@ export const handler: Handlers = {
           }
         })
     });
+
+    console.log(data_left);
 
     let data_right = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run?api_key=" + Deno.env.get("RUNPOD_API_KEY"),
       {

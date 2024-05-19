@@ -22,8 +22,6 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
         method: "POST",
         body: formData,
       });
-      console.log("reponse in input tsx", response.json());
-
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -33,6 +31,8 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
 
     left_res.value = (fd.get("response_left") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
     right_res.value = (fd.get("response_right") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
+    console.log(fd.get("data_left"));
+    console.log(fd.get("data_right"));
 
     model_left.value-=1;
 
