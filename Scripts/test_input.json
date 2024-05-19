@@ -1,0 +1,7 @@
+{
+  "input": {
+      "num_params": 3,
+      "code": ["moew", "def lengthOfLongestSubstring(s):\n return 5"],
+      "params": [["('(){}]')", "('{](){')", "('({]})')"], ["('asdkkkkk')", "('11333')", "('test!!')"]]
+  }
+}

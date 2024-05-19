@@ -14,20 +14,62 @@ export const handler: Handlers = {
     const id_left = await getCurrentServerlessInstances(model_left);
     const id_right = await getCurrentServerlessInstances(model_right);
 
-    const [prompt , prompt_number] = getRandomPrompt();
+    const [prompt , prompt_number, prompts] = getRandomPrompt();
 
-    console.log(prompt_number);
 
+    const num_arguments = 10;
+    let args: string[][]= [];
+    for(let i=0;i<num_arguments;i++){
+      args[0][i] = "('" + generateParens() + "')";
+      args[1][i] = "('" + generateStrings() + "')";
+      args[2][i] = "('" + generateMatrix() + "')"
+    }
 
 
     const response_left = await sendPrompt(prompt, model_left, id_left);
+    const response_left2 = await sendPrompt(prompts[prompt_number+1 % 3][0], model_left, id_left);
+    const response_left3 = await sendPrompt(prompts[prompt_number-1 % 3][0], model_left, id_left);
     const response_right = await sendPrompt(prompt, model_right, id_right);
+    const response_right2 = await sendPrompt(prompts[prompt_number+1 % 3][0], model_right, id_right);
+    const response_right3 = await sendPrompt(prompts[prompt_number-1 % 3][0], model_right, id_right);
 
+    let data_left = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run?api_key=" + Deno.env.get("RUNPOD_API_KEY"),
+      {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify({
+          "Input" : {
+             "num_params" : num_arguments,
+              "code" : [response_left, response_left2, response_left3],
+              "params" : args,
+          }
+        })
+    });
+
+    let data_right = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run?api_key=" + Deno.env.get("RUNPOD_API_KEY"),
+      {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify({
+          "Input" : {
+             "num_params" : num_arguments,
+              "code" : [response_right, response_right2, response_right3],
+              "params" : args,
+          }
+        })
+    });
 
     console.log("responses", response_left, response_right);
     const fd = new FormData();
     fd.set("response_left", response_left);
+    fd.set("data_left", data_left);
     fd.set("response_right", response_right);
+    fd.set("data_right", data_right);
+    fd.set("prompt",prompt);
 
       return new Response(
         fd,
@@ -37,6 +79,60 @@ export const handler: Handlers = {
       );
   },
 };
+
+function generateParens(): string{
+    let s = "";
+  for(let i=0;i<(Math.floor(Math.random() * 20)) + 1;i++){
+    const r = Math.random();
+    if(r < 1/6.0){
+      s +="("
+    } else if (r < 2/6.0){
+      s += ")"
+    } else if (r < 3/6.0){
+      s += "["
+    } else if (r < 4/6.0) {
+      s += "]"
+    } else if (r < 5/6.0) {
+      s += "{"
+    } else {
+      s += "}"
+    }
+  }
+  return s;
+}
+
+function generateStrings(): string {
+  const alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let s = "";
+  const len = Math.floor(Math.random() * 20) + 1;
+  for(let i=0;i<len;i++){
+    s+= alph.charAt(Math.floor(Math.random()*alph.length));
+  }
+
+  return s
+}
+
+function generateMatrix(): string {
+    const rows = Math.floor(Math.random() * 10) + 1;
+    const cols = Math.floor(Math.random() * 10) + 1;
+    const matrix = [];
+
+    // Populate the matrix with random integers between 0 and 99
+    for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < cols; j++) {
+            row.push(Math.floor(Math.random() * 100));
+        }
+
+        matrix.push(row);
+    }
+
+    // Create a string representation of the matrix
+    const matrixString = matrix.map(row => row.join(' ')).join('\n');
+    
+    return matrixString;
+}
+
 
 async function getCurrentServerlessInstances(model: string) {
   const response: Response = await fetch("https://api.runpod.io/graphql?api_key=" + Deno.env.get("RUNPOD_API_KEY"), {
