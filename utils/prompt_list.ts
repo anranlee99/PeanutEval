@@ -6,5 +6,5 @@ const prompts: [string, number][]= [
 
 export function getRandomPrompt(): [string, number, [string,number][]] {
     const random = prompts[Math.floor(Math.random() * prompts.length)];
-  return [random[0] + "Create a function that solves this problem in python. Only give me the code, nothing else, and no tests. No explanation is necesarry. Give me only python code, not psuedocode. Omit any steps taken to arrive at the code. If you do not only write python code, you will be punished" , random[1], prompts];
+  return [random[0] + "Create a function that solves this problem in python. Only give me the code in a single function, without classes, nothing else, and no tests. No explanation is necesarry. Give me only python code, not psuedocode. Omit any steps taken to arrive at the code. Do not write out anything with english or chinese words, especially detailed steps" , random[1], prompts];
 }

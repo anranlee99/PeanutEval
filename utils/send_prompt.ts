@@ -11,7 +11,7 @@ export async function sendPrompt(prompt: string, model: string, id: string): Pro
 
     console.log("sending prompt:\n", prompt, model, id, `https://api.runpod.ai/v2/${id}/openai/v1\n`);
 
-    const chat = [];
+    const chat = [] //["mistralai/Mixtral-8x7B-v0.1", "nomic-ai/gpt4all-j"];
 
 
 
@@ -31,7 +31,7 @@ export async function sendPrompt(prompt: string, model: string, id: string): Pro
           // console.log(chunk.choices[0]?.delta?.content || "");
       response+=chunk.choices[0]?.delta?.content || "";
     }
-    console.log("response:\n", response);
+    // console.log("response:\n", response);
     return response;
 
   } else {
@@ -42,7 +42,7 @@ export async function sendPrompt(prompt: string, model: string, id: string): Pro
       max_tokens:500,
 
     });
-    console.log(completion.choices[0].text);
+    // console.log(completion.choices[0].text);
     return completion.choices[0].text;
   }
 }

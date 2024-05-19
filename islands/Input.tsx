@@ -31,8 +31,9 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
 
     const fd = await response.formData();
 
-    left_res.value = (fd.get("response_left") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
-    right_res.value = (fd.get("response_right") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
+    left_res.value = (fd.get("response_left") as string).substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
+    right_res.value = (fd.get("response_right") as string).substring(1).replace("Answer:", "").replace("Solution:", "").replace("/(^print\(.+)/gm", "");
+
     result.value = JSON.stringify(fd.get("data_left")) + "\n" + JSON.stringify(fd.get("data_right"));
 
     model_left.value-=1;
