@@ -19,10 +19,10 @@ export const handler: Handlers = {
     const prompt = getRandomPrompt();
     const response_left = await sendPrompt(prompt, model_left);
     const response_right = await sendPrompt(prompt, model_right);
+    console.log("responses", response_left, response_right);
     const fd = new FormData();
     fd.set("response_left", response_left);
     fd.set("response_right", response_right);
-    console.log("responses", response_left, response_right);
     try {
 
       return new Response(
