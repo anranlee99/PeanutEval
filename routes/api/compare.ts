@@ -1,5 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { sendPrompt } from "../../utils/send_prompt.ts";
+import { getRandomPrompt } from "../../utils/prompt_list.ts";
 
 export const handler: Handlers = {
   async POST(request: Request): Promise<Response> {
@@ -35,7 +36,7 @@ export const handler: Handlers = {
         })
       }
     };
-    const prompt = "something here";
+    const prompt = getRandomPrompt();
     const response_left = await sendPrompt(prompt, model_left);
     const response_right = await sendPrompt(prompt, model_right);
     const fd = new FormData();
@@ -76,18 +77,18 @@ async function getCurrentServerlessInstances() {
   return response.json();
 }
 
-async function deleteServerlessInstance(id: string){
-const response = await fetch("https://api.runpod.io/graphql" + Deno.env.get("RUNPOD_API_KEY"), {
+async function deleteServerlessInstance(id: string) {
+  const response = await fetch("https://api.runpod.io/graphql" + Deno.env.get("RUNPOD_API_KEY"), {
     "headers": {
-        "content-type": "application/json",
-        "Sec-GPC": "1"
+      "content-type": "application/json",
+      "Sec-GPC": "1"
     },
     "referrer": "https://www.runpod.io/",
-    "body": JSON.stringify({"operationName":"deleteEndpoint","variables":{"id":id},"query":"mutation deleteEndpoint($id: String!) {\n  deleteEndpoint(id: $id)\n}"}),
+    "body": JSON.stringify({ "operationName": "deleteEndpoint", "variables": { "id": id }, "query": "mutation deleteEndpoint($id: String!) {\n  deleteEndpoint(id: $id)\n}" }),
     "method": "POST",
-});
+  });
 
-  if (response.status != 200){
+  if (response.status != 200) {
     console.log("Error deleting Instance");
   }
 }
