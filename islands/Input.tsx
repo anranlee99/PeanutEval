@@ -45,7 +45,7 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
   };
   return (
     <Button
-      class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black"
+      class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black my-4 "
       onClick={handleSubmit}
       type="submit"
     >
