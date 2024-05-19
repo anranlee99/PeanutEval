@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import {sendPrompt} from "../../utils/runpod.ts";
-import {createEndpoint} from "../../utils/create_endpoint.ts";
+
 export const handler: Handlers = {
   async POST(request) {
     // Parse the request body as FormData
@@ -8,14 +8,9 @@ export const handler: Handlers = {
 
     
     try {
-        // const promptValue = formData.get("prompt") as string;
-        // console.log("Prompt value:", promptValue);
-        let endpoint = await createEndpoint("meta-llama/Meta-Llama-3-8B-Instruct");
-        console.log(endpoint);
 
-    //   const res = await sendPrompt(promptValue);
       return new Response(
-        JSON.stringify({ message: "request successful: " + endpoint}),
+        JSON.stringify({ message: "request successful: " }),
         {
           status: 200, // OK
         },

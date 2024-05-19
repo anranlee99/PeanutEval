@@ -35,18 +35,11 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "allowJs": true,
-    "esModuleInterop": true,
     "experimentalDecorators": false,
-    "inlineSourceMap": true,
-    "isolatedModules": true,
     "lib": ["deno.window"],
-    "module": "esnext",
-    "moduleDetection": "force",
     "strict": true,
     "noImplicitAny": false,
-    "strictNullChecks": false,
-    "target": "esnext",
-    "useDefineForClassFields": true
+    "strictNullChecks": false
   },
   "nodeModulesDir": true
 }
