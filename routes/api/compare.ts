@@ -26,25 +26,23 @@ export const handler: Handlers = {
     }
 
     console.log("before responses\n");
-    console.log(prompts[mod(prompt_number+1,3)]);
-    console.log(prompts[mod(prompt_number-1,3)]);
-
-
 
     const response_left = await sendPrompt(prompt, model_left, id_left);
     const response_left2 = await sendPrompt(prompts[mod(prompt_number+1,3)][0], model_left, id_left);
     const response_left3 = await sendPrompt(prompts[mod(prompt_number-1,3)][0], model_left, id_left);
     console.log("After left\n");
+
     const response_right = await sendPrompt(prompt, model_right, id_right);
     const response_right2 = await sendPrompt(prompts[mod(prompt_number+1,3)][0], model_right, id_right);
     const response_right3 = await sendPrompt(prompts[mod(prompt_number-1,3)][0], model_right, id_right);
     console.log("After right\n")
 
-    let data_left = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run?api_key=" + Deno.env.get("RUNPOD_API_KEY"),
+    let data_left = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run",
       {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
+        "Authorization" : "Bearer " + Deno.env.get("RUNPOD_API_KEY"),
       },
       body: JSON.stringify({
           "Input" : {
@@ -55,14 +53,17 @@ export const handler: Handlers = {
         })
     });
 
+  
+
     console.log(JSON.stringify(data_left));
 
 
-    let data_right = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run?api_key=" + Deno.env.get("RUNPOD_API_KEY"),
+    let data_right = await fetch("https://api.runpod.ai/v2/c2sgjxin2sf92f/run",
       {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
+        "Authorization" : "Bearer " + Deno.env.get("RUNPOD_API_KEY"),
       },
       body: JSON.stringify({
           "Input" : {
