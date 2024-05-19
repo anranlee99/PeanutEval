@@ -5,7 +5,15 @@ export const handler: Handlers = {
   async POST(request) {
     // Parse the request body as FormData
     const formData = await request.formData();
+    const model_left = formData.get("model_left");
+    const model_right = formData.get("model_right");
+    //TODO: nma?
+    // check if we have a serverless instance running here
+    // if yes, then query the prompt 
+    // if not, make an api call to /api/create to create a new serverless instance
+    // then query the prompt
 
+    //then return the model outputs as a response
     
     try {
 
