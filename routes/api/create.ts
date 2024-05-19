@@ -5,11 +5,14 @@ export const handler: Handlers = {
   async POST(request) {
     // Parse the request body as FormData
     const formData = await request.formData();
-    formData.get("model");
+    const model = formData.get("model");
+    
+
+    //
     
     try {
       return new Response(
-        JSON.stringify({ message: "request successful: " }),
+        JSON.stringify({ message: `Successfully created ${model}`}),
         {
           status: 200, // OK
         },
