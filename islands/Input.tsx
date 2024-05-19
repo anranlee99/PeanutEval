@@ -22,6 +22,7 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
         method: "POST",
         body: formData,
       });
+      console.log("reponse in input tsx", response.json());
 
 
       if (!response.ok) {
@@ -37,6 +38,12 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
 
   };
   return (
-            <Button class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black" onClick={handleSubmit} type="submit">Compare</Button>
+    <Button
+      class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black"
+      onClick={handleSubmit}
+      type="submit"
+    >
+      Compare
+    </Button>
   );
 }
