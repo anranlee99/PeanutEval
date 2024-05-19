@@ -4,10 +4,12 @@ import {sendPrompt} from "../../utils/runpod.ts";
 export const handler: Handlers = {
   async POST(request: Request) {
     // Parse the request body as FormData
-    console.log("hi!");
     const formData = await request.formData();
+    
     const model_left = formData.get("model_left");
     const model_right = formData.get("model_right");
+    console.log("hi!");
+    console.log(model_left, model_right);
     //TODO: nma?
     // check if we have a serverless instance running here
     // if yes, then query the prompt 
