@@ -82,6 +82,7 @@ def run_code(job):
                 ai_time_intial = time.time()
 
                 output = sandbox.notebook.exec_cell(code + ";" + functions[i] + params[i][j])
+                print(output.text)
 
                 if output.error:
                     fail_cnt+=1
@@ -91,6 +92,7 @@ def run_code(job):
                 correct_time_initial = time.time()
                 correct_output = exec(functions[i]+ params[i][j])
                 correct_time_terminal = time.time()
+                print(correct_output)
 
 
                 if(output.text == correct_output):
