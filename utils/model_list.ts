@@ -3,7 +3,6 @@ export default [
     "THUDM/chatglm3-6b",
     "CohereForAI/c4ai-command-r-v01",
     "databricks/dbrx-instruct",
-    "Deci/DeciLM-7B-instruct",
     "tiiuae/falcon-40b",
     "google/gemma-7b",
     "bigcode/starcoder",

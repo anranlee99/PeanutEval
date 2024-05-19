@@ -21,7 +21,7 @@ export async function sendPrompt(prompt: string, model: string, id: string) {
         max_tokens: 100,
     });
     console.log("completion", completion);
-    const response = JSON.parse(completion.choices[0].message.content as string);
+    const response = completion.choices[0].message.content
     console.log("response", response);
     return response;
 }

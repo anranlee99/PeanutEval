@@ -58,8 +58,7 @@ async function getCurrentServerlessInstances(model: string) {
   if (deployed.length > 0) {
     return deployed[0].id;
   } else {
-    const res = await createEndpoint(model);
-    console.log("response from creating endpoint", res.json());
+    await createEndpoint(model);
   }
   return await getCurrentServerlessInstances(model);
 
