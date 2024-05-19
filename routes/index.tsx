@@ -33,6 +33,8 @@ export default function Home() {
         </h2>
         <p class="text-[#c8c1dc]">Comparison results will be displayed here.</p>
       </div>
+      <div> 
+      </div>
     </div>
   );
 }
