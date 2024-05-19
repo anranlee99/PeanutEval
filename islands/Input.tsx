@@ -7,8 +7,9 @@ interface InputBoxProps {
   left_res: Signal<string>;
   right_res: Signal<string>;
   onclicktrigger: Signal<number>
+  result: Signal<string>;
 }
-export default function InputBox({ model_left, model_right, left_res, right_res, onclicktrigger}: InputBoxProps) {
+export default function InputBox({ model_left, model_right, left_res, right_res, onclicktrigger, result}: InputBoxProps) {
   const handleSubmit = async (e: Event) => {
     left_res.value = "";
     right_res.value = "";
@@ -23,6 +24,7 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
         body: formData,
       });
 
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -35,6 +37,10 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
     console.log(fd.get("data_right"));
 
     model_left.value-=1;
+
+    //after the llm grades the result we'd set
+
+    // result.value = ;
 
   };
   return (
