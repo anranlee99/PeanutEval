@@ -3,7 +3,7 @@ export async function createEndpoint(model: string) {
     "operationName": "saveEndpoint",
     "variables": {
       "input": {
-        "gpuIds": "AMPERE_80",
+        "gpuIds": "AMPERE_48",
         "idleTimeout": 5,
         "locations": null,
         "name": model,

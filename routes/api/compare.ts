@@ -14,14 +14,20 @@ export const handler: Handlers = {
     const id_left = await getCurrentServerlessInstances(model_left);
     const id_right = await getCurrentServerlessInstances(model_right);
 
-    const prompt = getRandomPrompt();
+    const [prompt , prompt_number] = getRandomPrompt();
+
+    console.log(prompt_number);
+
+
+
     const response_left = await sendPrompt(prompt, model_left, id_left);
     const response_right = await sendPrompt(prompt, model_right, id_right);
+
+
     console.log("responses", response_left, response_right);
     const fd = new FormData();
     fd.set("response_left", response_left);
     fd.set("response_right", response_right);
-    try {
 
       return new Response(
         fd,
@@ -29,18 +35,6 @@ export const handler: Handlers = {
           status: 200, // OK
         }
       );
-    } catch (error) {
-      console.error("Error getting result from runpod:", error);
-
-      // Respond with an error message
-      return new Response(
-        JSON.stringify({ error: "Failed to query prompt" }),
-        {
-          headers: { "Content-Type": "application/json" },
-          status: 500, // Internal Server Error
-        },
-      );
-    }
   },
 };
 

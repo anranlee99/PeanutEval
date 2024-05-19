@@ -4,26 +4,37 @@ import model_list from "../utils/model_list.ts";
 interface InputBoxProps {
   model_left: Signal<number>;
   model_right: Signal<number>;
+  left_res: Signal<string>;
+  right_res: Signal<string>;
+  onclicktrigger: Signal<number>
 }
-export default function InputBox({ model_left, model_right }: InputBoxProps) {
+export default function InputBox({ model_left, model_right, left_res, right_res, onclicktrigger}: InputBoxProps) {
   const handleSubmit = async (e: Event) => {
+    left_res.value = "";
+    right_res.value = "";
     e.preventDefault();
     const formData = new FormData();
     formData.append("model_left", model_list[model_left.value]);
     formData.append("model_right", model_list[model_right.value]);
+    onclicktrigger.value+=1;
 
-    try {
-      const response = await fetch("/api/compare", {
+      const response : Response = await fetch("/api/compare", {
         method: "POST",
         body: formData,
       });
 
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    } catch (error) {
-      console.error("Failed to make network request", error);
-    }
+
+    const fd = await response.formData();
+
+    left_res.value = (fd.get("response_left") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
+    right_res.value = (fd.get("response_right") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
+
+    model_left.value-=1;
+
   };
   return (
             <Button class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black" onClick={handleSubmit} type="submit">Compare</Button>

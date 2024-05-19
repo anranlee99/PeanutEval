@@ -1,8 +1,4 @@
 export default [
-    "THUDM/chatglm3-6b",
-    "CohereForAI/c4ai-command-r-v01",
-    "databricks/dbrx-instruct",
-    "tiiuae/falcon-40b",
     "google/gemma-7b",
     "bigcode/starcoder",
     "bigcode/gpt_bigcode-santacoder",
