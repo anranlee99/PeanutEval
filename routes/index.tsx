@@ -1,6 +1,5 @@
 import { useSignal } from "@preact/signals";
 import CodeBox from "../islands/CodeBox.tsx";
-import model_list from "../utils/model_list.ts";
 import InputBox from "../islands/Input.tsx";
 
 export default function Home() {
