@@ -1,5 +1,4 @@
 export default [
-    "bigscience/bloomz",
     "THUDM/chatglm3-6b",
     "CohereForAI/c4ai-command-r-v01",
     "databricks/dbrx-instruct",
