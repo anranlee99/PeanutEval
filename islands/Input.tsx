@@ -26,12 +26,6 @@ export default function InputBox({ model_left, model_right }: InputBoxProps) {
     }
   };
   return (
-    <div class="flex justify-end w-full max-w-screen-md">
-      <pre class="whitespace-pre-wrap">
-          <div class="">
             <Button class="text-[#c8c1dc] rounded-lg font-bold shadow-lg hover:text-black" onClick={handleSubmit} type="submit">Compare</Button>
-          </div>
-      </pre>
-    </div>
   );
 }

@@ -13,15 +13,15 @@ export default function CodeBox({ code, content }: CodeBoxProps) {
   };
 
   return (
-    <div class="mx-2 transition-transform ">
-      <select class="z-0 hover:z-60 w-40 mb-2 p-2 bg-[#1f2138] text-[#c8c1dc] rounded focus:outline-none" value={code.value} onChange={handleDropdownChange}>
+    <div class="z-0 mx-2 ">
+      <select class="w-40 mb-2 p-2 bg-[#1f2138] text-[#c8c1dc] rounded focus:outline-none" value={code.value} onChange={handleDropdownChange}>
         {modelList.map((model, index) => (
           <option key={index} value={index}>
             {model}
           </option>
         ))}
       </select>
-        <textarea readonly class="w-full h-64 p-3 bg-[#212239] text-[#c8c1dc] rounded focus:outline-none" value={content}></textarea>
+        <textarea readonly class="z-0 w-full h-64 p-3 bg-[#212239] text-[#c8c1dc] rounded focus:outline-none" value={content}></textarea>
 
           <code>{content.value}</code>
     </div>
