@@ -16,12 +16,14 @@ export default function Home() {
       <h2 class="mx-4 mb-4 text-left text-xs text-[#c8c1dc] font-Comfortaa align-baseline ">
         Compare your favorite models on codegen performance
       </h2> 
-      <div class="z-10 flex justify-end max-w-screen-lg mr-3">
+      <div class="z-50 justify-end max-w-50">
+      <div class="z-50 flex max-w-50 justify-end mr-3">
       <InputBox model_left={dropdown_left} model_right={dropdown_right} />
       </div>
-      <div class="font-sixty flex justify-between -mt-8 w-full max-w-screen-lg">
+      <div class="font-sixty flex justify-between w-full max-w-screen-lg">
         <CodeBox code={dropdown_left} content={left_res} />
         <CodeBox code={dropdown_right} content={right_res} />
+      </div>
       </div>
 
       <div
