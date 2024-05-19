@@ -61,3 +61,19 @@ async function getCurrentServerlessInstances(){
 });  
   return response.json();
 }
+
+async function deleteServerlessInstance(id: string){
+const response = await fetch("https://api.runpod.io/graphql" + Deno.env.get("RUNPOD_API_KEY"), {
+    "headers": {
+        "content-type": "application/json",
+        "Sec-GPC": "1"
+    },
+    "referrer": "https://www.runpod.io/",
+    "body": JSON.stringify({"operationName":"deleteEndpoint","variables":{"id":id},"query":"mutation deleteEndpoint($id: String!) {\n  deleteEndpoint(id: $id)\n}"}),
+    "method": "POST",
+});
+
+  if (response.status != 200){
+    console.log("Error deleting Instance");
+  }
+}
