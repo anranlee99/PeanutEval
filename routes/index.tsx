@@ -9,10 +9,11 @@ export default function Home() {
   const right_res = useSignal("");
   
   return (
-    <div class="px-4 py-8 mx-auto bg-[#10111d] min-h-screen flex flex-col items-center justify-center">
-      <h1 class="text-center text-4xl font-bold mb-10 uppercase tracking-wide text-[#ff6b6b]">
-        Vibrant Minimalist Paragraph Comparison
+    <div class="px-4 mx-auto bg-[#362c4d] min-h-screen flex flex-col items-center justify-center">
+      <h1 class="text-center text-4xl font-bold mb-10 uppercase tracking-wide text-[#54b5ff]">
+        PeanutEval
       </h1>
+      <h2 class="text-center text-[#7cc2f7] font-bold align-baseline pb-8">Compare your favorite models on codegen performance</h2>
       <div class="flex justify-between w-full max-w-screen-lg">
         <CodeBox code={dropdown_left} content={left_res} />
         <CodeBox code={dropdown_right} content={right_res} />

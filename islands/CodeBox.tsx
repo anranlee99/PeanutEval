@@ -14,7 +14,7 @@ export default function CodeBox({ code, content }: CodeBoxProps) {
 
   return (
     <div class="w-1/2 p-8 bg-gray-900 rounded-lg mx-2 shadow-lg transform transition-transform hover:-translate-y-1">
-      <select class="w-full p-2 mb-2 bg-gray-800 text-pink-500 rounded focus:outline-none" value={code.value} onChange={handleDropdownChange}>
+      <select class="w-full p-2 mb-2 bg-gray-800 text-[#b495fc] rounded focus:outline-none" value={code.value} onChange={handleDropdownChange}>
         {modelList.map((model, index) => (
           <option key={index} value={index}>
             {model}
