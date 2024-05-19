@@ -9,12 +9,20 @@ export default function Home() {
   const right_res = useSignal("");
   
   return (
-    <div class="px-4 py-8 mx-auto bg-[#10111d]">
-      <div class="max-w-screen-md mx-auto flex flex-row justify-between">
+    <div class="px-4 py-8 mx-auto bg-[#10111d] min-h-screen flex flex-col items-center justify-center">
+      <h1 class="text-center text-4xl font-bold mb-10 uppercase tracking-wide text-[#ff6b6b]">
+        Vibrant Minimalist Paragraph Comparison
+      </h1>
+      <div class="flex justify-between w-full max-w-screen-lg">
         <CodeBox code={dropdown_left} content={left_res} />
         <CodeBox code={dropdown_right} content={right_res} />
       </div>
       <InputBox model_left={dropdown_left} model_right={dropdown_right} />
+
+      <div id="result" class="max-w-xl mt-8 p-8 bg-gray-900 rounded-lg shadow-lg hidden">
+        <h2 class="text-center text-2xl font-bold mb-4 uppercase tracking-wide text-[#ff6b6b]">Comparison Result</h2>
+        <p class="text-white">Comparison results will be displayed here.</p>
+      </div>
     </div>
   );
 }

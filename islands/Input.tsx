@@ -26,10 +26,10 @@ export default function InputBox({ model_left, model_right }: InputBoxProps) {
     }
   };
   return (
-    <div class="p-4 bg-gray-100 rounded-lg shadow-md">
+    <div class="flex justify-center w-full max-w-screen-md">
       <pre class="whitespace-pre-wrap">
           <div class="flex gap-8 py-6">
-            <Button onClick={handleSubmit} type="submit">Send Request</Button>
+            <Button class="mt-8 bg-pink-500 text-white py-3 px-6 rounded-lg font-bold shadow-lg transform transition-transform hover:-translate-y-1" onClick={handleSubmit} type="submit">Send Request</Button>
           </div>
       </pre>
     </div>
