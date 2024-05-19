@@ -6,7 +6,7 @@ export async function createEndpoint(model: string) {
         "gpuIds": "AMPERE_16",
         "idleTimeout": 5,
         "locations": null,
-        "name": `${model} -fb`,
+        "name": model,
         "networkVolumeId": null,
         "scalerType": "QUEUE_DELAY",
         "scalerValue": 4,
@@ -16,7 +16,7 @@ export async function createEndpoint(model: string) {
         "bindEndpoint": true,
         "allowedCudaVersions": "12.1,12.2,12.3",
         "template": {
-          "name": "vllm-1716079057961-BAAI-Aquila-7B",
+          "name": model,
           "imageName": "runpod/worker-vllm:stable-cuda12.1.0",
           "containerDiskInGb": 30,
           "dockerArgs": "",
