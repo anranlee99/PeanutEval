@@ -33,8 +33,7 @@ export default function InputBox({ model_left, model_right, left_res, right_res,
 
     left_res.value = (fd.get("response_left") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
     right_res.value = (fd.get("response_right") as string).substring(1).replace("Answer:", "").replace("Solution:", "");
-    console.log(JSON.stringify(fd.get("data_left")));
-    console.log(JSON.stringify(fd.get("data_right"));
+    result.value = JSON.stringify(fd.get("data_left")) + "\n" + JSON.stringify(fd.get("data_right"));
 
     model_left.value-=1;
 
